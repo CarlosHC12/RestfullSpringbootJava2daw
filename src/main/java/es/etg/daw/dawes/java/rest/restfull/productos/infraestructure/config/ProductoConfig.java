@@ -2,9 +2,12 @@ package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.CreateProductoService;
-
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.DeleteProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.EditProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.FindProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.CreateProductoUseCase;
@@ -50,4 +53,11 @@ public class ProductoConfig {
     public EditProductoService editProductoService(){
         return new EditProductoService(editProductoUseCase());
     }
-}
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?>  deleteProducto(@PathVariable Long id) {
+        DeleteProductoService.delete(id);
+        return ResponseEntity.noContent().build(); //Devpñvemos una respuesta vacía.
+    }
+
+} //hola esto es un comentario de prueba

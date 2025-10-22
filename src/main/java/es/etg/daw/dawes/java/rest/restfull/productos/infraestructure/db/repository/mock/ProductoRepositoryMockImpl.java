@@ -35,9 +35,23 @@ public class ProductoRepositoryMockImpl implements ProductoRepository {
         productos.remove(id);
     }
 
+   
+
+    @Override
+    public void delete(Producto p) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public Optional<Producto> getById(long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+    }
+
     @Override
     public Optional<Producto> getByName(String name) {
-        // TODO Sin implementar
+        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getByName'");
     }
     
