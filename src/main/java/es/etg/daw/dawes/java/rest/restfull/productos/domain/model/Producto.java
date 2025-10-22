@@ -16,4 +16,8 @@ public class Producto {
 	private String nombre;
 	private double precio;
 	private LocalDateTime createdAt;
+    public void setDescripcion(Object descripcion) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setDescripcion'");
+    }
 }

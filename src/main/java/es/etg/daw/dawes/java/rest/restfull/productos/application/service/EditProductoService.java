@@ -18,9 +18,8 @@ public class EditProductoService {
 		return producto;
 	}
 
-	public static Producto update(EditProductoCommand comando) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'update'");
+	public Producto update(EditProductoCommand comando) {
+		return EditProductoUseCase.update(comando);
 	}
 	
 }

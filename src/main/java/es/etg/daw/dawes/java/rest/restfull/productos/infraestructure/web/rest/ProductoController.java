@@ -59,8 +59,7 @@ public class ProductoController {
 	@PutMapping("/{id}")
     public ProductoResponse editProducto(@PathVariable int id, @RequestBody ProductoRequest productoRequest){
         EditProductoCommand comando = ProductoMapper.toCommand(id, productoRequest);
-        Producto producto = EditProductoService.update(comando);
-
+        Producto producto = editProductoService.update(comando);
         return  ProductoMapper.toResponse(producto); //Respuesta
     }
 
