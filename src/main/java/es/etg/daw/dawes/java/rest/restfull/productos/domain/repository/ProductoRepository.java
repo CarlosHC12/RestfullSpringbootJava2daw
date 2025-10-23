@@ -7,6 +7,7 @@ public interface ProductoRepository extends CRUDRepository<Producto, Integer>  {
 
     public Optional<Producto> getByName(String name);
 
-    public void delete(Producto p);
+    public Producto getById(int ID);
+
     
 }

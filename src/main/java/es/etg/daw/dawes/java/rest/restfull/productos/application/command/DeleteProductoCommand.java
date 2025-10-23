@@ -13,9 +13,6 @@ public class DeleteProductoCommand {
 	
 	private long id;
 
-    public Object getId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getId'");
-    }
+    // Método para obtener el ID del producto a eliminar
 	
 }

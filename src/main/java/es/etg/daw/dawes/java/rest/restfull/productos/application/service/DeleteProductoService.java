@@ -2,6 +2,7 @@ package es.etg.daw.dawes.java.rest.restfull.productos.application.service;
 
 import org.springframework.stereotype.Service;
 
+import es.etg.daw.dawes.java.rest.restfull.productos.application.command.DeleteProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.EditProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.DeleteProductoUseCase;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.EditProductoUseCase;
@@ -14,12 +15,8 @@ public class DeleteProductoService {
 
 	public final  DeleteProductoUseCase EditProductoUseCase;
 
-	public Producto DeleteProducto(EditProductoCommand comando){
-		Producto producto = DeleteProducto(comando);
-		return producto;
-	}
 
-	public Producto update(EditProductoCommand comando) {
+	public Producto Delete(DeleteProductoCommand comando) {
 		Producto producto = DeleteProductoUseCase.delete(comando);
 		return producto;
 	}

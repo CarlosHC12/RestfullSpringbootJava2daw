@@ -9,8 +9,8 @@ public interface CRUDRepository<T, ID> {
     
     public T save(T t);
     public List<T> getAll();
-    public Optional<T> getById(long id);
+    public Optional<T> getById(Integer id);
     public void deteteById(ID id);
-    Optional<Producto> getById(Integer id);
+    Producto getById(int id);
 
 }
