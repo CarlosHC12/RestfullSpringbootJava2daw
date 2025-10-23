@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.CreateProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.EditProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.CreateProductoService;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.service.DeleteProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.EditProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.FindProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
@@ -58,7 +57,7 @@ public class ProductoController {
 	}
 
 
-    @PutMapping("/{id}")
+	@PutMapping("/{id}")
     public ProductoResponse editProducto(@PathVariable int id, @RequestBody ProductoRequest productoRequest){
         EditProductoCommand comando = ProductoMapper.toCommand(id, productoRequest);
         Producto producto = editProductoService.update(comando);
@@ -66,12 +65,12 @@ public class ProductoController {
         return  ProductoMapper.toResponse(producto); //Respuesta
     }
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<?>  deleteProducto(@PathVariable int id) {
+    public ResponseEntity<?>  deleteProducto(@PathVariable Long id) {
         DeleteProductoService.delete(id);
         return ResponseEntity.noContent().build(); //Devpñvemos una respuesta vacía.
     }
-    
 
 }
 
