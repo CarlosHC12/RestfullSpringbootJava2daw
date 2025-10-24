@@ -39,6 +39,7 @@ public class ProductoController {
     
     private final EditProductoService editProductoService;
 
+    private final DeleteProductoService deleteProductoService;
 
     @GetMapping
     public List<ProductoResponse> allProductos(){
@@ -69,7 +70,7 @@ public class ProductoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?>  deleteProducto(@PathVariable int id) {
-        DeleteProductoService.delete(id);
+        deleteProductoService.delete(id);
         return ResponseEntity.noContent().build(); //Devpñvemos una respuesta vacía.
     }
 

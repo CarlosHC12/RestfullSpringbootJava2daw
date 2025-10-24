@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class DeleteProductoService {
 
-    private final DeleteProductoUseCase deleteProductoUseCase;
+    public final DeleteProductoUseCase deleteProductoUseCase;
 
     // Método público usado por el controlador: eliminar por id
     public void delete(int id) {
