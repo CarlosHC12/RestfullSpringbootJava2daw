@@ -2,14 +2,13 @@ package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.CreateProductoService;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.DeleteProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.EditProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.service.FindProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.CreateProductoUseCase;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.DeleteProductoUseCase;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.EditProductoUseCase;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.FindProductoUseCase;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.repository.ProductoRepository;
@@ -52,6 +51,15 @@ public class ProductoConfig {
         return new EditProductoService(editProductoUseCase());
     }
 
+    @Bean
+    public DeleteProductoUseCase deleteProductoUseCase() {
+        return new DeleteProductoUseCase(productoRepository);
+    }
     
-    
-} //hola esto es un comentario de prueba
+    @Bean
+    public DeleteProductoService deleteProductoService(){
+        return new DeleteProductoService(deleteProductoUseCase());
+    }
+
+
+}

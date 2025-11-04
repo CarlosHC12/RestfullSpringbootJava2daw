@@ -31,7 +31,7 @@ public class ProductoRepositoryMockImpl implements ProductoRepository {
     }
 
     @Override
-    public void deteteById(Integer id) {
+    public void deleteById(Integer id) {
         productos.remove(id);
     }
 
@@ -39,12 +39,6 @@ public class ProductoRepositoryMockImpl implements ProductoRepository {
     public Optional<Producto> getByName(String name) {
         // TODO Sin implementar
         throw new UnsupportedOperationException("Unimplemented method 'getByName'");
-    }
-
-    @Override
-    public Producto getById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
     }
     
 }

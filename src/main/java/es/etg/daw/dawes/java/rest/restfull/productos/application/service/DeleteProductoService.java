@@ -2,23 +2,18 @@ package es.etg.daw.dawes.java.rest.restfull.productos.application.service;
 
 import org.springframework.stereotype.Service;
 
-import es.etg.daw.dawes.java.rest.restfull.productos.application.command.DeleteProductoCommand;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.command.EditProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.DeleteProductoUseCase;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.EditProductoUseCase;
-import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class DeleteProductoService {
 
-	public final  DeleteProductoUseCase EditProductoUseCase;
+    public final DeleteProductoUseCase deleteProductoUseCase;
 
-
-	public Producto Delete(DeleteProductoCommand comando) {
-		Producto producto = DeleteProductoUseCase.delete(comando);
-		return producto;
-	}
-	
+    // Método público usado por el controlador: eliminar por id
+    public void delete(int id) {
+        deleteProductoUseCase.delete(id);
+    }
+    
 }
