@@ -1,8 +1,8 @@
 package es.etg.daw.dawes.java.rest.restfull.common.domain.model;
 
-public class ProductoId extends Identificador {
+public class CategoriaId extends Identificador {
     
-    public ProductoId(Integer value) {
+    public CategoriaId(Integer value) {
         super(value);
     }
 }
