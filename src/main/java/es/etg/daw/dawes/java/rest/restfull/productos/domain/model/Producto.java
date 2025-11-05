@@ -21,3 +21,4 @@ public class Producto {
 	//Agregamos la categoría
     private CategoriaId categoria;
 }
+//producto respository (siguiente paso)
