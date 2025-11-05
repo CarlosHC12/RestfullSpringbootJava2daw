@@ -11,16 +11,15 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class EditProductoService {
 
-	public final  EditProductoUseCase EditProductoUseCase;
+    private final EditProductoUseCase editProductoUseCase;
 
-	public Producto EditProducto(EditProductoCommand comando){
-		Producto producto = EditProducto(comando);
-		return producto;
-	}
+    // nombre en camelCase y delega al use case (evita recursión)
+    public Producto editProducto(EditProductoCommand comando) {
+        return editProductoUseCase.update(comando);
+    }
 
-	public Producto update(EditProductoCommand comando) {
-		Producto producto = EditProductoUseCase.update(comando);
-		return producto;
-	}
-	
+    // si quieres mantener un alias llamado update, haz que también delegue
+    public Producto update(EditProductoCommand comando) {
+        return editProductoUseCase.update(comando);
+    }
 }
