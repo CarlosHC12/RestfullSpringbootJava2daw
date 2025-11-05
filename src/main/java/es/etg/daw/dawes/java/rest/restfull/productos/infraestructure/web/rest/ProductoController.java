@@ -13,6 +13,7 @@ import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.mapper.ProductoMapper;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.dto.ProductoRequest;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.dto.ProductoResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -52,11 +53,15 @@ public class ProductoController {
     }
 
 	@PostMapping //Método Post
-	public ResponseEntity<ProductoResponse> createProducto(@RequestBody ProductoRequest productoRequest) {
-		CreateProductoCommand comando = ProductoMapper.toCommand(productoRequest); 
-		Producto producto = createProductoService.createProducto(comando);
-		return ResponseEntity.status(HttpStatus.CREATED).body(ProductoMapper.toResponse(producto)); //Respuestagit@github.com:julparper/dawes-springboot-restful.git
-	}
+    public ResponseEntity<ProductoResponse> createProducto(
+              // Indicamos que valide los datos de la request
+            @Valid
+            @RequestBody 
+                ProductoRequest productoRequest) {
+        CreateProductoCommand comando = ProductoMapper.toCommand(productoRequest); 
+        Producto producto = createProductoService.createProducto(comando);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ProductoMapper.toResponse(producto)); //Respuesta
+    }
 
 
 	@PutMapping("/{id}")
@@ -73,6 +78,8 @@ public class ProductoController {
         deleteProductoService.delete(id);
         return ResponseEntity.noContent().build(); //Devpñvemos una respuesta vacía.
     }
+
+    
 
 }
 
