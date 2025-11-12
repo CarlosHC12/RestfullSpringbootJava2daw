@@ -2,6 +2,7 @@ package es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.produc
 
 import java.time.LocalDateTime;
 
+import es.etg.daw.dawes.java.rest.restfull.productos.application.command.categoria.CreateCategoriaCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.producto.CreateProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.repository.ProductoRepository;
