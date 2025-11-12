@@ -12,8 +12,11 @@ import lombok.Data;
 public class Producto {
 	
 	// Atributos
-	private int id;
-	private String nombre;
-	private double precio;
-	private LocalDateTime createdAt;
+	private ProductoId id;
+    private String nombre;
+    private double precio;
+    private LocalDateTime createdAt;
+	//Agregamos la categoría
+    private CategoriaId categoria;
 }
+//producto respository (siguiente paso)

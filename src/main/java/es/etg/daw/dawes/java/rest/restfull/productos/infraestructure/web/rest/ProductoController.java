@@ -3,16 +3,18 @@ package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.rest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.etg.daw.dawes.java.rest.restfull.productos.application.command.CreateProductoCommand;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.command.EditProductoCommand;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.service.CreateProductoService;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.service.DeleteProductoService;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.service.EditProductoService;
-import es.etg.daw.dawes.java.rest.restfull.productos.application.service.FindProductoService;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.command.producto.CreateProductoCommand;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.command.producto.EditProductoCommand;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.producto.CreateProductoService;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.producto.DeleteProductoService;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.producto.EditProductoService;
+import es.etg.daw.dawes.java.rest.restfull.productos.application.service.producto.FindProductoService;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
+import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.ProductoId;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.mapper.ProductoMapper;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.dto.ProductoRequest;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.dto.ProductoResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -39,6 +41,7 @@ public class ProductoController {
     
     private final EditProductoService editProductoService;
 
+    private final DeleteProductoService deleteProductoService;
 
     @GetMapping
     public List<ProductoResponse> allProductos(){
@@ -51,14 +54,18 @@ public class ProductoController {
     }
 
 	@PostMapping //Método Post
-	public ResponseEntity<ProductoResponse> createProducto(@RequestBody ProductoRequest productoRequest) {
-		CreateProductoCommand comando = ProductoMapper.toCommand(productoRequest); 
-		Producto producto = createProductoService.createProducto(comando);
-		return ResponseEntity.status(HttpStatus.CREATED).body(ProductoMapper.toResponse(producto)); //Respuestagit@github.com:julparper/dawes-springboot-restful.git
-	}
+    public ResponseEntity<ProductoResponse> createProducto(
+              // Indicamos que valide los datos de la request
+            @Valid
+            @RequestBody 
+                ProductoRequest productoRequest) {
+        CreateProductoCommand comando = ProductoMapper.toCommand(productoRequest); 
+        Producto producto = createProductoService.createProducto(comando);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ProductoMapper.toResponse(producto)); //Respuesta
+    }
 
 
-    @PutMapping("/{id}")
+	@PutMapping("/{id}")
     public ProductoResponse editProducto(@PathVariable int id, @RequestBody ProductoRequest productoRequest){
         EditProductoCommand comando = ProductoMapper.toCommand(id, productoRequest);
         Producto producto = editProductoService.update(comando);
@@ -66,10 +73,11 @@ public class ProductoController {
         return  ProductoMapper.toResponse(producto); //Respuesta
     }
 
-    @DeleteMapping("/{id}")
+
+   @DeleteMapping("/{id}")
     public ResponseEntity<?>  deleteProducto(@PathVariable int id) {
-        DeleteProductoService.delete(id);
-        return ResponseEntity.noContent().build(); //Devpñvemos una respuesta vacía.
+        deleteProductoService.delete(new ProductoId(id)); //convertimos id en ProductoId
+        return ResponseEntity.noContent().build();
     }
     
 
