@@ -17,25 +17,7 @@ public class ProductoRepositoryMockImpl implements ProductoRepository {
 
     private final Map<ProductoId, Producto> productos = ProductoFactory.getDemoData();
 
-    @Override
-    public List<Producto> getAll() {
-        return new ArrayList<>(productos.values());
-    }
-
-    public Optional<Producto> getByProductoId(Integer id) {
-        //Un optional puede tener una valor o no. Si no existe el producto devuelve Optional.empty
-        return Optional.ofNullable(productos.get(id));
-    }
-
-
-    @Override
-    public Optional<Producto> getByName(String name) {
-        // TODO Sin implementar
-        throw new UnsupportedOperationException("Unimplemented method 'getByName'");
-    }
-    
-
-    //Mejora para calcular el id de la creación que viene vacío
+    // Mejora para calcular el id de la creación que viene vacío
         @Override
     public Producto save(Producto t) {
             //create
@@ -46,7 +28,7 @@ public class ProductoRepositoryMockImpl implements ProductoRepository {
     }
 
     private int obtenerSiguienteId(){
-        ProductoId ultimo = null;
+        ProductoId ultimo = new ProductoId(0);
         if(!productos.isEmpty()){
             Collection<Producto> lista = productos.values();
             
@@ -59,15 +41,26 @@ public class ProductoRepositoryMockImpl implements ProductoRepository {
     }
 
     @Override
+    public List<Producto> getAll() {
+        return new ArrayList<>(productos.values());
+    }
+
+    @Override
     public Optional<Producto> getById(ProductoId id) {
-        //Un optional puede tener una valor o no. Si no existe el producto devuelve Optional.empty
+        // Un optional puede tener una valor o no. Si no existe el producto devuelve
+        // Optional.empty
         return Optional.ofNullable(productos.get(id));
     }
 
-
     @Override
     public void deleteById(ProductoId id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
+        productos.remove(id);
     }
+
+    @Override
+    public Optional<Producto> getByName(String name) {
+        // TODO Sin implementar
+        throw new UnsupportedOperationException("Unimplemented method 'getByName'");
+    }
+
 }
