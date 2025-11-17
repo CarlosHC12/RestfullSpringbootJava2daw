@@ -2,26 +2,30 @@ package es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.produc
 
 import java.time.LocalDateTime;
 
-import es.etg.daw.dawes.java.rest.restfull.productos.application.command.categoria.CreateCategoriaCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.producto.CreateProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.repository.ProductoRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CreateProductoUseCase {
-    
-    private ProductoRepository productoRepository;
 
-    public Producto create( CreateProductoCommand comando){
+	private final ProductoRepository productoRepository;
 
-        Producto producto = Producto.builder() // Se puede usar comando.id y no getId por usar @Accessors(fluent = true) la clase CreateProductoCommand 
-                                    .nombre(comando.nombre())
-                                    .precio(comando.precio())
-                                    .createdAt(LocalDateTime.now()).build();
+	
 
-        productoRepository.save(producto);
-        return producto;
+	public Producto create(CreateProductoCommand comando) {
 
-    }
+		// Se puede usar comando.id() y no getId() por usar @Accessors(fluent = true)
+		// en la clase CreateProductoCommand
+
+		Producto producto = Producto.builder()
+				.nombre(comando.nombre())
+				.precio(comando.precio())
+				.categoria(comando.categoriaId())
+				.createdAt(LocalDateTime.now()).build();
+		productoRepository.save(producto);
+		return producto;
+
+	}
 }

@@ -7,19 +7,15 @@ import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.product
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import lombok.RequiredArgsConstructor;
 
+
 @RequiredArgsConstructor
 @Service
 public class EditProductoService {
 
-    private final EditProductoUseCase editProductoUseCase;
+      private final EditProductoUseCase editProductoUseCase;
 
-    // nombre en camelCase y delega al use case (evita recursión)
-    public Producto editProducto(EditProductoCommand comando) {
-        return editProductoUseCase.update(comando);
-    }
-
-    // si quieres mantener un alias llamado update, haz que también delegue
-    public Producto update(EditProductoCommand comando) {
-        return editProductoUseCase.update(comando);
+    public Producto update(EditProductoCommand editProductoCommand) {
+      
+        return  editProductoUseCase.update(editProductoCommand);
     }
 }

@@ -12,5 +12,4 @@ public abstract class Identificador {
         }
         this.value = value;
     }
-
 }

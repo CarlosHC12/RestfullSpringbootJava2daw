@@ -18,48 +18,51 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductoConfig {
 
+       private final ProductoRepository productoRepository;
 
-    public final ProductoRepository productoRepository;
-    
-    @Bean
+    //POST
+      @Bean
     public CreateProductoUseCase createProductoUseCase() {
+		//Añadimos en la llamada una instancia de nuestro MOCK.
         return new CreateProductoUseCase(productoRepository);
     }
+    //POST
     @Bean
     public CreateProductoService createProductoService(){
         return new CreateProductoService(createProductoUseCase());
     }
-
-    @Bean
+    
+    //Get
+       @Bean
     public FindProductoUseCase findProductoUseCase(){
         return new FindProductoUseCase(productoRepository);
     }
-
+    //GET
     @Bean
     public FindProductoService findProductoService(){
         return new FindProductoService(findProductoUseCase());
     }
 
-
+    //DELETE
     @Bean
-    public EditProductoUseCase editProductoUseCase() {
+    public DeleteProductoUseCase deleteProductoUseCase(){
+        return new DeleteProductoUseCase(productoRepository);
+    }
+
+    //DELETE
+    @Bean 
+    public DeleteProductoService deleteProductoService(){
+        return new DeleteProductoService(deleteProductoUseCase());
+    }
+    //PUT
+    @Bean
+    public EditProductoUseCase editProductoUseCase(){
         return new EditProductoUseCase(productoRepository);
     }
-    
+
+    //PUT
     @Bean
     public EditProductoService editProductoService(){
         return new EditProductoService(editProductoUseCase());
     }
-
-    @Bean
-    public DeleteProductoUseCase deleteProductoUseCase() {
-        return new DeleteProductoUseCase(productoRepository);
-    }
-    
-    @Bean
-    public DeleteProductoService deleteProductoService(){
-        return new DeleteProductoService(deleteProductoUseCase());
-    }
-
-
 }

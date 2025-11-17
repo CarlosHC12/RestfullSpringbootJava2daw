@@ -1,7 +1,5 @@
 package es.etg.daw.dawes.java.rest.restfull.productos.application.service.producto;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import es.etg.daw.dawes.java.rest.restfull.productos.application.usecase.producto.DeleteProductoUseCase;
@@ -14,10 +12,10 @@ public class DeleteProductoService{
 
     private final DeleteProductoUseCase deleteProductoUseCase;
 
-    @CacheEvict  
-    @CachePut
     public void delete(ProductoId id){
         deleteProductoUseCase.delete(id);
     }
 
 }
+
+

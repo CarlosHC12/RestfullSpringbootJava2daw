@@ -1,10 +1,8 @@
-
 package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.mapper;
-
-
 
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.producto.CreateProductoCommand;
 import es.etg.daw.dawes.java.rest.restfull.productos.application.command.producto.EditProductoCommand;
+import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.CategoriaId;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.Producto;
 import es.etg.daw.dawes.java.rest.restfull.productos.domain.model.ProductoId;
 import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.dto.ProductoRequest;
@@ -13,22 +11,19 @@ import es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.web.dto.Pro
 public class ProductoMapper {
 
     public static CreateProductoCommand toCommand(ProductoRequest productoRequest){
-        return new CreateProductoCommand(productoRequest.nombre(), productoRequest.precio());
+        return new CreateProductoCommand(productoRequest.nombre(), productoRequest.precio(),new CategoriaId(productoRequest.categoriaId()));
     }
 
     public static EditProductoCommand toCommand(int id, ProductoRequest productoRequest){
         //pasamos del int a ProductoId
-        return new EditProductoCommand(new ProductoId(id), productoRequest.nombre(), productoRequest.precio());
+        return new EditProductoCommand(new ProductoId(id), productoRequest.nombre(), productoRequest.precio(),new CategoriaId(productoRequest.categoriaId()));
     }
 
-    public static ProductoResponse toResponse(Producto producto){
+       public static ProductoResponse toResponse(Producto producto){
         return new ProductoResponse(producto.getId().getValue(), //lo pasamos a int
                                     producto.getNombre(),
                                     producto.getPrecio(),
                                     producto.getCreatedAt(),
                                     producto.getCategoria().getValue());//Agregamos la categoria.
     }
-
-
-	
 }
