@@ -1,7 +1,5 @@
 package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.jpa.entity;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 

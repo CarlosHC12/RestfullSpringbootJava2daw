@@ -1,6 +1,5 @@
 package es.etg.daw.dawes.java.rest.restfull.productos.infraestructure.db.jpa.entity;
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
