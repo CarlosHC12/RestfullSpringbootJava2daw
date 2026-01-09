@@ -32,7 +32,7 @@ public class CategoriaEntity {
     // Relación One-to-Many: Lado no propietario
     // Mapeada por el campo "categoria" en la entidad Producto.
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductoEntity> productos = new ArrayList<AlumnoEntity>();
+    private List<ProductoEntity> productos = new ArrayList<ProductoEntity>();
 
     // --- Constructores ---
 
