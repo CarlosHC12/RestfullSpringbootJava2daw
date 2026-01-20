@@ -53,9 +53,9 @@ public class ProductoEntity {
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDateTime fechaCreacion;
 
-    // Relación Many-to-One: Es el lado propietario (tendrá la FK)
+    // Relación de clave ajena
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoria_id", nullable = false) // Columna de clave foránea en la tabla PRODUCTO
+    @JoinColumn(name = "categoria_id") // Nombre de la columna en la tabla PRODUCTOS
     private CategoriaEntity categoria;
 
     // --- Constructores ---
